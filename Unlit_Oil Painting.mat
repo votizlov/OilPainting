@@ -9,8 +9,10 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Unlit_Oil Painting
   m_Shader: {fileID: 4800000, guid: 92fecb803ac20af4aab71465faad523f, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_ValidKeywords:
+  - _SAMPLES_HIGH
+  m_InvalidKeywords:
+  - GAUSS
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -30,12 +32,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BlurSize: 0.0608
-    - _Gauss: 0
-    - _NormalWeight: 1.3571429
-    - _Radius: 7.7421436
-    - _StandardDeviation: 0.0227
-    - _VignetteIntensity: 0.5027858
-    - _VignetteSmoothness: 1.0278581
+    - _BlurSize: 0.021428572
+    - _Gauss: 1
+    - _NormalWeight: 10
+    - _Radius: 10
+    - _Samples: 2
+    - _StandardDeviation: 0.0323
+    - _VignetteIntensity: 0.24285714
+    - _VignetteSmoothness: 0.72571427
     m_Colors: []
   m_BuildTextureStacks: []

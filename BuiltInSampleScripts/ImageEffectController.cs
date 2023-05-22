@@ -10,8 +10,8 @@ public class ImageEffectController : MonoBehaviour
     public float impastoIntensity;
     public float normalInfluence;
     public float blurIntensity;
-    public float vignetteIntensity;
-    public float vignetteSmoothness;
+    public float vignetteIntensity = 0.1357143f;
+    public float vignetteSmoothness = 0.3328571f;
 #if UNITY_EDITOR
     private void Awake()
     {
@@ -23,7 +23,7 @@ public class ImageEffectController : MonoBehaviour
     {
         effectMaterial.SetFloat("_Radius", impastoIntensity);
         effectMaterial.SetFloat("_NormalWeight", normalInfluence);
-        effectMaterial.SetFloat("_BlurIntensity", blurIntensity);
+        effectMaterial.SetFloat("_BlurSize", blurIntensity);
         effectMaterial.SetFloat("_VignetteIntensity", vignetteIntensity);
         effectMaterial.SetFloat("_VignetteSmoothness", vignetteSmoothness);
         Graphics.Blit(source, destination, effectMaterial);
