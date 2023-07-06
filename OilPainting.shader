@@ -136,48 +136,34 @@ Shader "Unlit/Oil Painting"
 
                 // blur
 
-                //failsafe so we can use turn off the blur by setting the deviation to 0
                 if (_StandardDeviation != 0)
                 {
                     float invAspect = _ScreenParams.y / _ScreenParams.x;
                     float sum = SAMPLES;
                     float sum2 = SAMPLES;
                     float3 col2;
-                    //iterate over blur samples
                     for (float index = 0; index < SAMPLES; index++)
                     {
-                        //get the offset of the sample
                         float offset = (index / (SAMPLES - 1) - 0.5) * _BlurSize;
-                        //get uv coordinate of sample
                         float2 uv = i.uv + float2(0, offset);
-                        //calculate the result of the gaussian function
                         float stDevSquared = _StandardDeviation * _StandardDeviation;
                         float gauss = (1 / sqrt(2 * PI * stDevSquared)) * pow(
                             E, -((offset * offset) / (2 * stDevSquared)));
-                        //add result to sum
                         sum += gauss;
-                        //multiply color with influence from gaussian function and add it to sum color
                         col += tex2D(_MainTex, uv) * gauss;
                     }
-                    //divide the sum of values by the amount of samples
                     color.rgb = lerp(color.rgb, col / sum, 0.5);
 
                     for (float index = 0; index < SAMPLES; index++)
                     {
-                        //get the offset of the sample
                         float offset = (index / (SAMPLES - 1) - 0.5) * _BlurSize * invAspect;
-                        //get uv coordinate of sample
                         float2 uv = i.uv + float2(offset, 0);
-                        //calculate the result of the gaussian function
                         float stDevSquared = _StandardDeviation * _StandardDeviation;
                         float gauss = (1 / sqrt(2 * PI * stDevSquared)) * pow(
                             E, -((offset * offset) / (2 * stDevSquared)));
-                        //add result to sum
                         sum2 += gauss;
-                        //multiply color with influence from gaussian function and add it to sum color
                         col2 += tex2D(_MainTex, uv) * gauss;
                     }
-                    //divide the sum of values by the amount of samples
                     color.rgb = lerp(color.rgb , col2 / sum2, 0.5);
                 }
 
